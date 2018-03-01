@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusInvoicingPlugin\Entity;
 
+use Sylius\Component\Core\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface CompanyDataInterface extends ResourceInterface
@@ -67,4 +68,44 @@ interface CompanyDataInterface extends ResourceInterface
      * @param string|null $seller
      */
     public function setSeller(?string $seller): void;
+
+    /**
+     * @return ChannelInterface|null
+     */
+    public function getChannel(): ?ChannelInterface;
+
+    /**
+     * @param ChannelInterface|null $channel
+     */
+    public function setChannel(?ChannelInterface $channel): void;
+
+    /**
+     * @return string|null
+     */
+    public function getInvoiceNumberTemplate(): ?string;
+
+    /**
+     * @param string|null $invoiceNumberTemplate
+     */
+    public function setInvoiceNumberTemplate(?string $invoiceNumberTemplate): void;
+
+    /**
+     * @return bool
+     */
+    public function getValidateCustomerVatNumber(): bool;
+
+    /**
+     * @param bool $validateCustomerVatNumber
+     */
+    public function setValidateCustomerVatNumber(bool $validateCustomerVatNumber): void;
+
+    /**
+     * @return bool
+     */
+    public function getGenerateInvoiceAfterPaymentSuccess(): bool;
+
+    /**
+     * @param bool $generateInvoiceAfterPaymentSuccess
+     */
+    public function setGenerateInvoiceAfterPaymentSuccess(bool $generateInvoiceAfterPaymentSuccess): void;
 }

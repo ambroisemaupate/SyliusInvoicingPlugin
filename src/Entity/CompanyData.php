@@ -12,6 +12,8 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusInvoicingPlugin\Entity;
 
+use Sylius\Component\Core\Model\ChannelInterface;
+
 class CompanyData implements CompanyDataInterface
 {
     /**
@@ -48,6 +50,26 @@ class CompanyData implements CompanyDataInterface
      * @var string
      */
     protected $seller;
+
+    /**
+     * @var ChannelInterface|null
+     */
+    protected $channel;
+
+    /**
+     * @var string|null
+     */
+    protected $invoiceNumberTemplate;
+
+    /**
+     * @var bool
+     */
+    protected $validateCustomerVatNumber = true;
+
+    /**
+     * @var bool
+     */
+    protected $generateInvoiceAfterPaymentSuccess = false;
 
     /**
      * {@inheritdoc}
@@ -151,5 +173,69 @@ class CompanyData implements CompanyDataInterface
     public function setSeller(?string $seller): void
     {
         $this->seller = $seller;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getChannel(): ?ChannelInterface
+    {
+        return $this->channel;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setChannel(?ChannelInterface $channel): void
+    {
+        $this->channel = $channel;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getInvoiceNumberTemplate(): ?string
+    {
+        return $this->invoiceNumberTemplate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setInvoiceNumberTemplate(?string $invoiceNumberTemplate): void
+    {
+        $this->invoiceNumberTemplate = $invoiceNumberTemplate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getValidateCustomerVatNumber(): bool
+    {
+        return $this->validateCustomerVatNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValidateCustomerVatNumber(bool $validateCustomerVatNumber): void
+    {
+        $this->validateCustomerVatNumber = $validateCustomerVatNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getGenerateInvoiceAfterPaymentSuccess(): bool
+    {
+        return $this->generateInvoiceAfterPaymentSuccess;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setGenerateInvoiceAfterPaymentSuccess(bool $generateInvoiceAfterPaymentSuccess): void
+    {
+        $this->generateInvoiceAfterPaymentSuccess = $generateInvoiceAfterPaymentSuccess;
     }
 }

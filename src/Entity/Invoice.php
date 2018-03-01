@@ -24,6 +24,11 @@ class Invoice implements InvoiceInterface
     /**
      * @var string
      */
+    protected $number;
+
+    /**
+     * @var string
+     */
     protected $vatNumber;
 
     /**
@@ -90,5 +95,21 @@ class Invoice implements InvoiceInterface
     public function setOrder(?OrderInterface $order): void
     {
         $this->order = $order;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getNumber(): ?string
+    {
+        return $this->number;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setNumber(?string $number): void
+    {
+        $this->number = $number;
     }
 }

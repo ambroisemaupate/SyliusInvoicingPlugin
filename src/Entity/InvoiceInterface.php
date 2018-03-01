@@ -46,4 +46,14 @@ interface InvoiceInterface extends ResourceInterface
      * @param string|null $path
      */
     public function setPath(?string $path): void;
+
+    /**
+     * @return string|null
+     */
+    public function getNumber(): ?string;
+
+    /**
+     * @param string|null $number
+     */
+    public function setNumber(?string $number): void;
 }

@@ -26,3 +26,25 @@ BitBag\SyliusInvoicingPlugin\Entity\CompanyData:
         seller:
             column: seller
             type: string
+        invoiceNumberTemplate:
+            column: invoice_number_template
+            type: string
+            nullable: true
+        validateCustomerVatNumber:
+            column: validate_customer_vat_number
+            type: boolean
+            nullable: false
+            options:
+                default: 1
+        generateInvoiceAfterPaymentSuccess:
+            column: generate_invoice_after_payment_success
+            type: boolean
+            nullable: false
+            options:
+                default: 0
+
+    oneToOne:
+        channel:
+            targetEntity: Sylius\Component\Core\Model\ChannelInterface
+            cascade: ["ALL"]
+
