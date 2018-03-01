@@ -215,7 +215,7 @@
                         {{ billingAddress.street }}<br/>
                         {{ billingAddress.postcode }} {{ billingAddress.city }}<br/>
                         {{ billingAddress.countryCode }}
-                        {% if invoice.vatNumber is defined %}
+                        {% if invoice.vatNumber is defined and invoice.vatNumber is not null %}
                             <br/>
                             {{ 'bitbag_sylius_invoicing_plugin.ui.vat'|trans }}: {{ invoice.vatNumber }}
                         {% endif %}
