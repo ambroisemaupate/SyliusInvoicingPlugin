@@ -214,8 +214,11 @@
                         {{ billingAddress.company }}<br/><br/>
                         {{ billingAddress.street }}<br/>
                         {{ billingAddress.postcode }} {{ billingAddress.city }}<br/>
-                        {{ billingAddress.countryCode }}<br/>
-                        {{ 'bitbag_sylius_invoicing_plugin.ui.vat'|trans }}: {{ invoice.vatNumber }}
+                        {{ billingAddress.countryCode }}
+                        {% if invoice.vatNumber is defined %}
+                            <br/>
+                            {{ 'bitbag_sylius_invoicing_plugin.ui.vat'|trans }}: {{ invoice.vatNumber }}
+                        {% endif %}
                     </div>
                 </div>
             </div>
