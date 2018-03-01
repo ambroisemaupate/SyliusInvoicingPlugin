@@ -1,0 +1,13 @@
+winzou_state_machine:
+    sylius_order:
+        callbacks:
+            after:
+                sylius_generate_invoice:
+                    on:
+                        - "complete"
+                    do:
+                        - "@bitbag_sylius_invoicing_plugin.state_resolver.invoice"
+                        - "generateInvoice"
+                    args:
+                        - "object.getOrder()"
+                    priority: 0
