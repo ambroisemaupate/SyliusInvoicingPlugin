@@ -15,6 +15,7 @@ namespace BitBag\SyliusInvoicingPlugin\Repository;
 use BitBag\SyliusInvoicingPlugin\Entity\CompanyDataInterface;
 use Doctrine\ORM\QueryBuilder;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
+use Sylius\Component\Core\Model\ChannelInterface;
 
 final class CompanyDataRepository extends EntityRepository implements CompanyDataRepositoryInterface
 {
@@ -32,6 +33,21 @@ final class CompanyDataRepository extends EntityRepository implements CompanyDat
     public function findCompanyData(): ?CompanyDataInterface
     {
         return $this->createQueryBuilder('o')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function findCompanyDataByChannel(ChannelInterface $channel): ?CompanyDataInterface
+    {
+        $queryBuilder = $this->createQueryBuilder('o');
+
+        return $queryBuilder->andWhere($queryBuilder->expr()->eq('o.channel', ':channel'))
+            ->setParameter(':channel', $channel)
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult()

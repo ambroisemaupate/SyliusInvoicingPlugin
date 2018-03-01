@@ -14,6 +14,7 @@ namespace BitBag\SyliusInvoicingPlugin\Resolver;
 
 use BitBag\SyliusInvoicingPlugin\Entity\CompanyDataInterface;
 use BitBag\SyliusInvoicingPlugin\Repository\CompanyDataRepositoryInterface;
+use Sylius\Component\Core\Model\ChannelInterface;
 
 final class CompanyDataResolver implements CompanyDataResolverInterface
 {
@@ -33,8 +34,12 @@ final class CompanyDataResolver implements CompanyDataResolverInterface
     /**
      * {@inheritdoc}
      */
-    public function resolveCompanyData(): ?CompanyDataInterface
+    public function resolveCompanyData(?ChannelInterface $channel = null): ?CompanyDataInterface
     {
+        if (null !== $channel) {
+            return $this->companyDataRepository->findCompanyDataByChannel($channel);
+        }
+
         return $this->companyDataRepository->findCompanyData();
     }
 }

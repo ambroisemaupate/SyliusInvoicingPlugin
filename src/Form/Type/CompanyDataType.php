@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusInvoicingPlugin\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -41,6 +42,15 @@ final class CompanyDataType extends AbstractResourceType
             ])
             ->add('seller', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.seller',
+            ])
+            ->add('invoiceNumberTemplate', TextType::class, [
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.invoice_number_template',
+            ])
+            ->add('validateCustomerVatNumber', CheckboxType::class, [
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.validate_customer_vat_number',
+            ])
+            ->add('generateInvoiceAfterPaymentSuccess', CheckboxType::class, [
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.generate_invoice_after_payment_success',
             ])
         ;
     }
