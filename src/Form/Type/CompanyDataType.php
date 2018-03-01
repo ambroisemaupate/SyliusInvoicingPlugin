@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusInvoicingPlugin\Form\Type;
 
+use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -42,6 +43,12 @@ final class CompanyDataType extends AbstractResourceType
             ])
             ->add('seller', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.seller',
+            ])
+            ->add('channel', ChannelChoiceType::class, [
+                'multiple' => false,
+                'expanded' => true,
+                'required' => false,
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.channel',
             ])
             ->add('invoiceNumberTemplate', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.invoice_number_template',

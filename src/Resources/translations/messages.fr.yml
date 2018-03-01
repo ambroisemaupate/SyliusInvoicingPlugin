@@ -25,6 +25,7 @@ bitbag_sylius_invoicing_plugin:
         city: Ville
         postcode: Code postal
         vat_number: Numéro de TVA
+        channel: Canal
         invoice_number_template: Modèle de numéro de facture
         validate_customer_vat_number: Valider le numéro de TVA du client
         generate_invoice_after_payment_success: Générer une facture après chaque paiement validé

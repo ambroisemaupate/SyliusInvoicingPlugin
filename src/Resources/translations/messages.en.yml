@@ -25,6 +25,7 @@ bitbag_sylius_invoicing_plugin:
         city: City
         postcode: Postcode
         vat_number: Vat number
+        channel: Channel
         invoice_number_template: Invoice number template
         validate_customer_vat_number: Validate customer VAT number
         generate_invoice_after_payment_success: Generate invoices after each successful payment
