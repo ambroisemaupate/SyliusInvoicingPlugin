@@ -6,6 +6,7 @@ use BitBag\SyliusInvoicingPlugin\Entity\Invoice;
 use BitBag\SyliusInvoicingPlugin\Repository\CompanyDataRepositoryInterface;
 use BitBag\SyliusInvoicingPlugin\Repository\InvoiceRepositoryInterface;
 use BitBag\SyliusInvoicingPlugin\Resolver\InvoiceFileResolverInterface;
+use BitBag\SyliusInvoicingPlugin\Resolver\InvoiceNumberResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\OrderInterface;
 
@@ -32,21 +33,29 @@ final class InvoiceResolver implements InvoiceResolverInterface
     private $invoiceFileResolver;
 
     /**
+     * @var InvoiceNumberResolverInterface
+     */
+    private $invoiceNumberResolver;
+
+    /**
      * @param CompanyDataRepositoryInterface $companyDataRepository
      * @param InvoiceRepositoryInterface $invoiceRepository
      * @param EntityManagerInterface $invoiceEntityManager
      * @param InvoiceFileResolverInterface $invoiceFileResolver
+     * @param InvoiceNumberResolverInterface $invoiceNumberResolver
      */
     public function __construct(
         CompanyDataRepositoryInterface $companyDataRepository,
         InvoiceRepositoryInterface $invoiceRepository,
         EntityManagerInterface $invoiceEntityManager,
-        InvoiceFileResolverInterface $invoiceFileResolver
+        InvoiceFileResolverInterface $invoiceFileResolver,
+        InvoiceNumberResolverInterface $invoiceNumberResolver
     ) {
         $this->companyDataRepository = $companyDataRepository;
         $this->invoiceRepository = $invoiceRepository;
         $this->invoiceEntityManager = $invoiceEntityManager;
         $this->invoiceFileResolver = $invoiceFileResolver;
+        $this->invoiceNumberResolver = $invoiceNumberResolver;
     }
 
     /**
@@ -63,7 +72,7 @@ final class InvoiceResolver implements InvoiceResolverInterface
         $invoice = $this->invoiceRepository->findByOrderId($order->getId()) ?: new Invoice();
 
         $invoice->setOrder($order);
-        $invoice->setNumber(null); //TODO: Use service to generate unique and consecutive number
+        $invoice->setNumber($this->invoiceNumberResolver->generateInvoiceNumber($invoice));
         $this->invoiceEntityManager->persist($invoice);
         $this->invoiceFileResolver->resolveInvoicePath($invoice);
 

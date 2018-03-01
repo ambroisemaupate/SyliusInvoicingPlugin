@@ -1,4 +1,7 @@
 services:
+    bitbag_sylius_invoicing_plugin.resolver.invoice_number:
+        class: BitBag\SyliusInvoicingPlugin\Resolver\DumbInvoiceNumberResolver
+
     bitbag_sylius_invoicing_plugin.resolver.invoice_file:
         class: BitBag\SyliusInvoicingPlugin\Resolver\InvoiceFileResolver
         arguments:
@@ -19,3 +22,4 @@ services:
             - "@bitbag_sylius_invoicing_plugin.repository.invoice"
             - "@bitbag_sylius_invoicing_plugin.manager.invoice"
             - "@bitbag_sylius_invoicing_plugin.resolver.invoice_file"
+            - "@bitbag_sylius_invoicing_plugin.resolver.invoice_number"
