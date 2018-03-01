@@ -5,9 +5,6 @@ imports:
     - { resource: "@BitBagSyliusInvoicingPlugin/Resources/config/services/resolver.yml" }
 
 services:
-    bitbag_sylius_invoicing_plugin.state_resolver.invoice:
-        class: BitBag\SyliusInvoicingPlugin\Resolver\State\InvoiceResolver
-
     bitbag_sylius_invoicing_plugin.file_generator.invoice_filename:
         class: BitBag\SyliusInvoicingPlugin\FileGenerator\InvoicePdfFilenameGenerator
 

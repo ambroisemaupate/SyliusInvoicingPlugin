@@ -11,3 +11,11 @@ services:
         class: BitBag\SyliusInvoicingPlugin\Resolver\CompanyDataResolver
         arguments:
             - "@bitbag_sylius_invoicing_plugin.repository.company_data"
+
+    bitbag_sylius_invoicing_plugin.state_resolver.invoice:
+        class: BitBag\SyliusInvoicingPlugin\Resolver\State\InvoiceResolver
+        arguments:
+            - "@bitbag_sylius_invoicing_plugin.repository.companyData"
+            - "@bitbag_sylius_invoicing_plugin.repository.invoice"
+            - "@bitbag_sylius_invoicing_plugin.manager.invoice"
+            - "@bitbag_sylius_invoicing_plugin.resolver.invoice_file"
