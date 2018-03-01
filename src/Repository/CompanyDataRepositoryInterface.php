@@ -14,7 +14,7 @@ namespace BitBag\SyliusInvoicingPlugin\Repository;
 
 use BitBag\SyliusInvoicingPlugin\Entity\CompanyDataInterface;
 use Doctrine\ORM\QueryBuilder;
-use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface CompanyDataRepositoryInterface extends RepositoryInterface

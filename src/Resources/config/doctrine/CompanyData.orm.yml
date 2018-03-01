@@ -45,6 +45,6 @@ BitBag\SyliusInvoicingPlugin\Entity\CompanyData:
 
     oneToOne:
         channel:
-            targetEntity: Sylius\Component\Core\Model\ChannelInterface
+            targetEntity: Sylius\Component\Channel\Model\ChannelInterface
             cascade: ["ALL"]
 

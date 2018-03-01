@@ -14,7 +14,7 @@ namespace BitBag\SyliusInvoicingPlugin\Resolver;
 
 use BitBag\SyliusInvoicingPlugin\Entity\CompanyDataInterface;
 use BitBag\SyliusInvoicingPlugin\Repository\CompanyDataRepositoryInterface;
-use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 
 final class CompanyDataResolver implements CompanyDataResolverInterface
 {

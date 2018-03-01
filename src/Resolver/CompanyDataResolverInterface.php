@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusInvoicingPlugin\Resolver;
 
 use BitBag\SyliusInvoicingPlugin\Entity\CompanyDataInterface;
-use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 
 interface CompanyDataResolverInterface
 {

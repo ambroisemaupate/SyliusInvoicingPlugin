@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusInvoicingPlugin\Entity;
 
-use Sylius\Component\Core\Model\ChannelInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Model\ResourceInterface;
 
 interface CompanyDataInterface extends ResourceInterface
