@@ -1,5 +1,5 @@
 winzou_state_machine:
-    sylius_order:
+    sylius_payment:
         callbacks:
             after:
                 sylius_generate_invoice:
@@ -10,4 +10,5 @@ winzou_state_machine:
                         - "generateInvoice"
                     args:
                         - "object.getOrder()"
+                    disabled: false
                     priority: 0
