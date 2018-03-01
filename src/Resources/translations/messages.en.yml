@@ -7,6 +7,7 @@ bitbag_sylius_invoicing_plugin:
         seller: Seller
         customer: Customer
         invoice_for_order: Invoice for order
+        invoice_number_for_order: "Invoice %number% for order no. %order%"
         subtotal: Subtotal
         discounted_price: Discounted
         total: Total

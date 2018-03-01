@@ -56,7 +56,7 @@ final class DownloadInvoiceMenuBuilder
 
         $menu = $orderShowMenuBuilderEvent->getMenu();
 
-        if (null === $this->companyDataResolver->resolveCompanyData()) {
+        if (null === $this->companyDataResolver->resolveCompanyData($order->getChannel())) {
             $this->addNoCompanyDataInfoMenuItem($menu);
 
             return;

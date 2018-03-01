@@ -224,7 +224,14 @@
     <div class="col-md-12">
         <div id="invoice-number" class="col-md-12">
             <h1>
-                {{ 'bitbag_sylius_invoicing_plugin.ui.invoice_for_order'|trans }} {{ order.number }}
+                {% if invoice.number is defined and invoice.number != '' %}
+                    {{ 'bitbag_sylius_invoicing_plugin.ui.invoice_number_for_order'|trans({
+                        '%number%': invoice.number,
+                        '%order%': order.number,
+                    }) }}
+                {% else %}
+                    {{ 'bitbag_sylius_invoicing_plugin.ui.invoice_for_order'|trans }} {{ order.number }}
+                {% endif %}
             </h1>
         </div>
         <div class="col-md-12" id="invoice-items">

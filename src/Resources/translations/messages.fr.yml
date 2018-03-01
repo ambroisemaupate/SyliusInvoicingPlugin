@@ -7,6 +7,7 @@ bitbag_sylius_invoicing_plugin:
         seller: Vendeur
         customer: Client
         invoice_for_order: Facture pour la commande
+        invoice_number_for_order: "Facture %number% pour la commande n°%order%"
         subtotal: Sous-total
         discounted_price: Prix après remise
         total: Total
