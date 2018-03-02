@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusInvoicingPlugin\Repository;
 
 use BitBag\SyliusInvoicingPlugin\Entity\InvoiceInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 
 interface InvoiceRepositoryInterface extends RepositoryInterface
@@ -23,4 +24,31 @@ interface InvoiceRepositoryInterface extends RepositoryInterface
      * @return InvoiceInterface|null
      */
     public function findByOrderId(?int $orderId): ?InvoiceInterface;
+
+    /**
+     * @param \DateTime $dateTime
+     *
+     * @return int
+     */
+    public function countByYear(\DateTime $dateTime): int;
+
+    /**
+     * @return int
+     */
+    public function countAll(): int;
+
+    /**
+     * @param \DateTime $dateTime
+     * @param ChannelInterface $channel
+     *
+     * @return int
+     */
+    public function countByYearAndChannel(\DateTime $dateTime, ChannelInterface $channel): int;
+
+    /**
+     * @param ChannelInterface $channel
+     *
+     * @return int
+     */
+    public function countByChannel(ChannelInterface $channel): int;
 }
