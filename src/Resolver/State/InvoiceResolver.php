@@ -3,6 +3,7 @@
 namespace BitBag\SyliusInvoicingPlugin\Resolver\State;
 
 use BitBag\SyliusInvoicingPlugin\Entity\Invoice;
+use BitBag\SyliusInvoicingPlugin\Entity\InvoiceInterface;
 use BitBag\SyliusInvoicingPlugin\Repository\CompanyDataRepositoryInterface;
 use BitBag\SyliusInvoicingPlugin\Repository\InvoiceRepositoryInterface;
 use BitBag\SyliusInvoicingPlugin\Resolver\InvoiceFileResolverInterface;
@@ -84,16 +85,26 @@ final class InvoiceResolver implements InvoiceResolverInterface
         $this->invoiceEntityManager->persist($invoice);
 
         $invoiceFilePath = $this->invoiceFileResolver->resolveInvoicePath($invoice);
+
+        $this->sendInvoiceEmail($invoice, $invoiceFilePath);
+    }
+
+    /**
+     * @param InvoiceInterface $invoice
+     * @param string $invoiceFilePath
+     */
+    private function sendInvoiceEmail(InvoiceInterface $invoice, string $invoiceFilePath)
+    {
         $emails = [];
-        if (null !== $order->getCustomer()) {
-            $emails[] = $order->getCustomer()->getEmailCanonical();
+        if (null !== $invoice->getOrder()->getCustomer()) {
+            $emails[] = $invoice->getOrder()->getCustomer()->getEmailCanonical();
         }
-        if (null !== $order->getUser()) {
-            $emails[] = $order->getUser()->getEmailCanonical();
+        if (null !== $invoice->getOrder()->getUser()) {
+            $emails[] = $invoice->getOrder()->getUser()->getEmailCanonical();
         }
 
         $this->sender->send('invoice', $emails, [
-            'order' => $order,
+            'order' => $invoice->getOrder(),
             'invoice' => $invoice
         ], [
             $invoiceFilePath
