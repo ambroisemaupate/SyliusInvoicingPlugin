@@ -29,6 +29,7 @@ final class IncrementalInvoiceNumberResolver implements InvoiceNumberResolverInt
     private function getInvoiceCountForCurrentYearAndChannel(ChannelInterface $channel)
     {
         $count = $this->invoiceRepository->countByYearAndChannel(new \DateTime(), $channel);
+
         return $count + 1;
     }
 

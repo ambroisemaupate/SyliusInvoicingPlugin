@@ -1,6 +1,6 @@
 services:
     bitbag_sylius_invoicing_plugin.resolver.invoice_number:
-        class: BitBag\SyliusInvoicingPlugin\Resolver\DumbInvoiceNumberResolver
+        class: BitBag\SyliusInvoicingPlugin\Resolver\IncrementalInvoiceNumberResolver
 
     bitbag_sylius_invoicing_plugin.resolver.invoice_file:
         class: BitBag\SyliusInvoicingPlugin\Resolver\InvoiceFileResolver
