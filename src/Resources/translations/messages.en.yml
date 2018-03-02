@@ -1,4 +1,7 @@
 bitbag_sylius_invoicing_plugin:
+    emails:
+        invoice:
+            subject: Your invoice
     ui:
         download_invoice: Download invoice
         company_name: Company

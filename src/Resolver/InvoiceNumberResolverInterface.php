@@ -8,6 +8,7 @@ interface InvoiceNumberResolverInterface
 {
     /**
      * @param InvoiceInterface $invoice
+     *
      * @return string
      */
     public function generateInvoiceNumber(InvoiceInterface $invoice): string;

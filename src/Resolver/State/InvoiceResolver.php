@@ -9,9 +9,14 @@ use BitBag\SyliusInvoicingPlugin\Resolver\InvoiceFileResolverInterface;
 use BitBag\SyliusInvoicingPlugin\Resolver\InvoiceNumberResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Mailer\Sender\SenderInterface;
 
 final class InvoiceResolver implements InvoiceResolverInterface
 {
+    /**
+     * @var SenderInterface
+     */
+    private $sender;
     /**
      * @var CompanyDataRepositoryInterface
      */
@@ -43,19 +48,22 @@ final class InvoiceResolver implements InvoiceResolverInterface
      * @param EntityManagerInterface $invoiceEntityManager
      * @param InvoiceFileResolverInterface $invoiceFileResolver
      * @param InvoiceNumberResolverInterface $invoiceNumberResolver
+     * @param SenderInterface $sender
      */
     public function __construct(
         CompanyDataRepositoryInterface $companyDataRepository,
         InvoiceRepositoryInterface $invoiceRepository,
         EntityManagerInterface $invoiceEntityManager,
         InvoiceFileResolverInterface $invoiceFileResolver,
-        InvoiceNumberResolverInterface $invoiceNumberResolver
+        InvoiceNumberResolverInterface $invoiceNumberResolver,
+        SenderInterface $sender
     ) {
         $this->companyDataRepository = $companyDataRepository;
         $this->invoiceRepository = $invoiceRepository;
         $this->invoiceEntityManager = $invoiceEntityManager;
         $this->invoiceFileResolver = $invoiceFileResolver;
         $this->invoiceNumberResolver = $invoiceNumberResolver;
+        $this->sender = $sender;
     }
 
     /**
@@ -74,8 +82,21 @@ final class InvoiceResolver implements InvoiceResolverInterface
         $invoice->setOrder($order);
         $invoice->setNumber($this->invoiceNumberResolver->generateInvoiceNumber($invoice));
         $this->invoiceEntityManager->persist($invoice);
-        $this->invoiceFileResolver->resolveInvoicePath($invoice);
 
-        //TODO: Use service to send customer email with invoice attached
+        $invoiceFilePath = $this->invoiceFileResolver->resolveInvoicePath($invoice);
+        $emails = [];
+        if (null !== $order->getCustomer()) {
+            $emails[] = $order->getCustomer()->getEmailCanonical();
+        }
+        if (null !== $order->getUser()) {
+            $emails[] = $order->getUser()->getEmailCanonical();
+        }
+
+        $this->sender->send('invoice', $emails, [
+            'order' => $order,
+            'invoice' => $invoice
+        ], [
+            $invoiceFilePath
+        ]);
     }
 }

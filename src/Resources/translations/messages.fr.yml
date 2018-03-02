@@ -1,4 +1,7 @@
 bitbag_sylius_invoicing_plugin:
+    emails:
+        invoice:
+            subject: Votre facture
     ui:
         download_invoice: Télécharger la facture
         company_name: Société

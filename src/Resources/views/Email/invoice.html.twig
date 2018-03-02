@@ -1,0 +1,11 @@
+{% block subject %}
+    Your invoice no.{{ invoice.number }}
+{% endblock %}
+
+{% block body %}
+    {% autoescape %}
+        You’ll find invoice no.{{ invoice.number }} for your order with number {{ order.number }} attached.
+        <br/><br/>
+        Thank you for a successful transaction.
+    {% endautoescape %}
+{% endblock %}

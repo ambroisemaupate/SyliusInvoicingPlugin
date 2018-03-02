@@ -23,3 +23,4 @@ services:
             - "@bitbag_sylius_invoicing_plugin.manager.invoice"
             - "@bitbag_sylius_invoicing_plugin.resolver.invoice_file"
             - "@bitbag_sylius_invoicing_plugin.resolver.invoice_number"
+            - "@sylius.email_sender"

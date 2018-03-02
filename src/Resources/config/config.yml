@@ -8,6 +8,13 @@ parameters:
     wkhtmltopdf_binary_path: /usr/local/bin/wkhtmltopdf
     invoices_root_dir: "%kernel.root_dir%/../invoices"
 
+sylius_mailer:
+    emails:
+        invoice:
+            subject: bitbag_sylius_invoicing_plugin.emails.invoice.subject
+            template: 'BitBagSyliusInvoicingPlugin:Email:invoice.html.twig'
+            enabled: true
+
 knp_snappy:
     pdf:
         enabled: true
