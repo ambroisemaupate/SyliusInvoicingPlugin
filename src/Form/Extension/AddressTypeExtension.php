@@ -62,8 +62,10 @@ final class AddressTypeExtension extends AbstractTypeExtension
      */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder
-            ->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+        $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event): void {
+                if (null === $event->getForm()->getParent()) {
+                    return;
+                }
                 $billingAddressForm = $event->getForm()->getParent()->get('billingAddress');
 
                 if ($event->getForm() !== $billingAddressForm) {
