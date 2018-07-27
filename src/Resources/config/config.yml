@@ -6,6 +6,7 @@ imports:
 
 parameters:
     wkhtmltopdf_binary_path: /usr/local/bin/wkhtmltopdf
+    invoices_locale_code: "en"
     invoices_root_dir: "%kernel.root_dir%/../invoices"
 
 sylius_mailer:

@@ -45,6 +45,11 @@ final class InvoicePdfFileGenerator implements FileGeneratorInterface
     private $filesPath;
 
     /**
+     * @var string
+     */
+    private $localeCode;
+
+    /**
      * @param GeneratorInterface $pdfFileGenerator
      * @param EngineInterface $templatingEngine
      * @param CompanyDataResolverInterface $companyDataResolver
@@ -56,13 +61,15 @@ final class InvoicePdfFileGenerator implements FileGeneratorInterface
         EngineInterface $templatingEngine,
         CompanyDataResolverInterface $companyDataResolver,
         FilenameGeneratorInterface $filenameGenerator,
-        string $filesPath
+        string $filesPath,
+        string $localeCode = 'en'
     ) {
         $this->pdfFileGenerator = $pdfFileGenerator;
         $this->templatingEngine = $templatingEngine;
         $this->companyDataResolver = $companyDataResolver;
         $this->filenameGenerator = $filenameGenerator;
         $this->filesPath = $filesPath;
+        $this->localeCode = $localeCode;
     }
 
     /**
@@ -74,11 +81,16 @@ final class InvoicePdfFileGenerator implements FileGeneratorInterface
             'BitBagSyliusInvoicingPlugin::invoice.html.twig', [
                 'invoice' => $invoice,
                 'companyData' => $this->companyDataResolver->resolveCompanyData($invoice->getOrder()->getChannel()),
+                'app' => [
+                    'user' => [
+                        'localeCode' => $this->localeCode
+                    ]
+                ]
             ]
         );
         $filename = $this->filenameGenerator->generateFilename($invoice);
         $path = $this->filesPath . DIRECTORY_SEPARATOR . $filename;
-        
+
         $this->pdfFileGenerator->generateFromHtml($html, $path);
 
         return $filename;
