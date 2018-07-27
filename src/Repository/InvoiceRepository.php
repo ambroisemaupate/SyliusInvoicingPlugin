@@ -40,7 +40,7 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilderForYear($dateTime);
 
-        return (int) $queryBuilder->select($queryBuilder->expr()->count('o.id'))
+        return (int) $queryBuilder->select($queryBuilder->expr()->count('o'))
             ->getQuery()
             ->getSingleScalarResult()
         ;
@@ -53,7 +53,7 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
-        return (int) $queryBuilder->select($queryBuilder->expr()->count('o.id'))
+        return (int) $queryBuilder->select($queryBuilder->expr()->count('o'))
             ->innerJoin('o.order', 'invoiceOrder')
             ->getQuery()
             ->getSingleScalarResult()
@@ -67,7 +67,7 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilderForYear($dateTime);
 
-        $queryBuilder->select($queryBuilder->expr()->count('o.id'))
+        $queryBuilder->select($queryBuilder->expr()->count('o'))
             ->andWhere($queryBuilder->expr()->eq('invoiceOrder.channel', ':channel'))
             ->setParameter(':channel', $channel);
 
@@ -81,7 +81,7 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
-        return (int) $queryBuilder->select($queryBuilder->expr()->count('o.id'))
+        return (int) $queryBuilder->select($queryBuilder->expr()->count('o'))
             ->innerJoin('o.order', 'invoiceOrder')
             ->andWhere($queryBuilder->expr()->eq('invoiceOrder.channel', ':channel'))
             ->setParameter(':channel', $channel)
