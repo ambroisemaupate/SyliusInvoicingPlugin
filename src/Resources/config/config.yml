@@ -9,6 +9,10 @@ parameters:
     invoices_locale_code: "en"
     invoices_root_dir: "%kernel.root_dir%/../invoices"
 
+twig:
+    globals:
+        defaultLocaleCode: "%invoices_locale_code%"
+
 sylius_mailer:
     emails:
         invoice:
