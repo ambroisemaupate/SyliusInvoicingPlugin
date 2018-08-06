@@ -1,8 +1,10 @@
 <?php
 
-
 namespace BitBag\SyliusInvoicingPlugin\Resolver;
 
+use BitBag\SyliusInvoicingPlugin\Entity\InvoiceInterface;
+use BitBag\SyliusInvoicingPlugin\Repository\InvoiceRepositoryInterface;
+use Sylius\Component\Channel\Model\ChannelInterface;
 
 final class ChannelIgnoringInvoiceNumberResolver implements InvoiceNumberResolverInterface
 {
@@ -24,7 +26,7 @@ final class ChannelIgnoringInvoiceNumberResolver implements InvoiceNumberResolve
      *
      * @return int
      */
-    private function getInvoiceCountForCurrentYearAndChannel()
+    private function getInvoiceCountForCurrentYear()
     {
         $count = $this->invoiceRepository->countByYear(new \DateTime());
 
@@ -42,7 +44,7 @@ final class ChannelIgnoringInvoiceNumberResolver implements InvoiceNumberResolve
 
         $tokens = [
             $invoice->getOrder()->getCheckoutCompletedAt()->format('Y'),
-            sprintf('"%05d"', $this->getInvoiceCountForCurrentYearAndChannel($invoice->getOrder()->getChannel())),
+            sprintf('"%09d"', $this->getInvoiceCountForCurrentYear()),
         ];
 
         return implode('-', $tokens);
