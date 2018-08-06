@@ -22,7 +22,7 @@ final class InvoicePdfFilenameGenerator implements FilenameGeneratorInterface
     public function generateFilename(InvoiceInterface $invoice): string
     {
         $tokens = [
-            $invoice->getOrder()->getNumber(),
+            $invoice->getNumber(),
             $invoice->getOrder()->getCreatedAt()->format('Ymd'),
             bin2hex(random_bytes(6)),
         ];

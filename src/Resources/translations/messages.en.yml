@@ -24,6 +24,7 @@ bitbag_sylius_invoicing_plugin:
         new_company_data: Add new company invoice data
         edit_company_data: Edit company invoice data
         invoice_data: Company invoice data
+        set_invoice_data: You must set your company invoice data
         street: Street
         city: City
         postcode: Postcode

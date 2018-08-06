@@ -72,10 +72,26 @@ final class InvoiceResolver implements InvoiceResolverInterface
      */
     public function generateInvoice(OrderInterface $order): void
     {
+        $invoice = $this->getInvoiceFromOrder($order);
+
+        if (null !== $invoice) {
+            $invoiceFilePath = $this->invoiceFileResolver->resolveInvoicePath($invoice);
+
+            $this->sendInvoiceEmail($invoice, $invoiceFilePath);
+        }
+    }
+
+    /**
+     * @param OrderInterface $order
+     *
+     * @return InvoiceInterface|void
+     */
+    public function getInvoiceFromOrder(OrderInterface $order):? InvoiceInterface
+    {
         $companyData = $this->companyDataRepository->findCompanyDataByChannel($order->getChannel());
 
         if (null === $companyData || false === $companyData->getGenerateInvoiceAfterPaymentSuccess()) {
-            return;
+            return null;
         }
 
         $invoice = $this->invoiceRepository->findByOrderId($order->getId()) ?: new Invoice();
@@ -84,9 +100,7 @@ final class InvoiceResolver implements InvoiceResolverInterface
         $invoice->setNumber($this->invoiceNumberResolver->generateInvoiceNumber($invoice));
         $this->invoiceEntityManager->persist($invoice);
 
-        $invoiceFilePath = $this->invoiceFileResolver->resolveInvoicePath($invoice);
-
-        $this->sendInvoiceEmail($invoice, $invoiceFilePath);
+        return $invoice;
     }
 
     /**

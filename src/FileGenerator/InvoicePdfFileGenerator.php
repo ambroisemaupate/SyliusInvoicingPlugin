@@ -90,7 +90,6 @@ final class InvoicePdfFileGenerator implements FileGeneratorInterface
         );
         $filename = $this->filenameGenerator->generateFilename($invoice);
         $path = $this->filesPath . DIRECTORY_SEPARATOR . $filename;
-
         $this->pdfFileGenerator->generateFromHtml($html, $path);
 
         return $filename;

@@ -9,6 +9,7 @@ services:
         class: BitBag\SyliusInvoicingPlugin\FileGenerator\InvoicePdfFilenameGenerator
 
     bitbag_sylius_invoicing_plugin.file_generator.invoice_file:
+        public: true
         class: BitBag\SyliusInvoicingPlugin\FileGenerator\InvoicePdfFileGenerator
         arguments:
             - "@knp_snappy.pdf"

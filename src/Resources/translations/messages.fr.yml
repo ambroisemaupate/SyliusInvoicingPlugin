@@ -24,6 +24,7 @@ bitbag_sylius_invoicing_plugin:
         new_company_data: Ajouter une nouvelle société
         edit_company_data: Éditer les données de la société
         invoice_data: Données de la facture
+        set_invoice_data: Données de facturation manquantes
         street: Rue
         city: Ville
         postcode: Code postal
