@@ -40,7 +40,7 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilderForYear($dateTime);
 
-        return $queryBuilder->select($queryBuilder->expr()->count('o'))
+        return (int) $queryBuilder->select($queryBuilder->expr()->count('o'))
             ->getQuery()
             ->getSingleScalarResult()
         ;
@@ -53,8 +53,8 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
-        return $queryBuilder->select($queryBuilder->expr()->count('o'))
-            ->innerJoin('o.order', 'order')
+        return (int) $queryBuilder->select($queryBuilder->expr()->count('o'))
+            ->innerJoin('o.order', 'invoiceOrder')
             ->getQuery()
             ->getSingleScalarResult()
         ;
@@ -67,12 +67,11 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilderForYear($dateTime);
 
-        return $queryBuilder->select($queryBuilder->expr()->count('o'))
-            ->andWhere($queryBuilder->expr()->eq('order.channel', ':channel'))
-            ->setParameter(':channel', $channel)
-            ->getQuery()
-            ->getSingleScalarResult()
-        ;
+        $queryBuilder->select($queryBuilder->expr()->count('o'))
+            ->andWhere($queryBuilder->expr()->eq('invoiceOrder.channel', ':channel'))
+            ->setParameter(':channel', $channel);
+
+        return (int) $queryBuilder->getQuery()->getSingleScalarResult();
     }
 
     /**
@@ -82,9 +81,9 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
     {
         $queryBuilder = $this->createQueryBuilder('o');
 
-        return $queryBuilder->select($queryBuilder->expr()->count('o'))
-            ->innerJoin('o.order', 'order')
-            ->andWhere($queryBuilder->expr()->eq('order.channel', ':channel'))
+        return (int) $queryBuilder->select($queryBuilder->expr()->count('o'))
+            ->innerJoin('o.order', 'invoiceOrder')
+            ->andWhere($queryBuilder->expr()->eq('invoiceOrder.channel', ':channel'))
             ->setParameter(':channel', $channel)
             ->getQuery()
             ->getSingleScalarResult()
@@ -105,8 +104,8 @@ final class InvoiceRepository extends EntityRepository implements InvoiceReposit
         $queryBuilder = $this->createQueryBuilder('o');
 
         return $queryBuilder
-            ->innerJoin('o.order', 'order')
-            ->where($queryBuilder->expr()->between('order.checkoutCompletedAt', ':start', ':end'))
+            ->innerJoin('o.order', 'invoiceOrder')
+            ->where($queryBuilder->expr()->between('invoiceOrder.checkoutCompletedAt', ':start', ':end'))
             ->setParameter(':start', $start)
             ->setParameter(':end', $end)
         ;

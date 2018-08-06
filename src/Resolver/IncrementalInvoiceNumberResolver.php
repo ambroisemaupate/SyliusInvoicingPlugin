@@ -44,7 +44,7 @@ final class IncrementalInvoiceNumberResolver implements InvoiceNumberResolverInt
 
         $tokens = [
             $invoice->getOrder()->getCheckoutCompletedAt()->format('Y'),
-            sprintf('"%05d"', $this->getInvoiceCountForCurrentYearAndChannel($invoice->getOrder()->getChannel())),
+            sprintf('%09d', $this->getInvoiceCountForCurrentYearAndChannel($invoice->getOrder()->getChannel())),
         ];
 
         return implode('-', $tokens);

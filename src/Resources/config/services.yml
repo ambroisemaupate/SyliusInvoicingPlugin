@@ -16,6 +16,7 @@ services:
             - "@bitbag_sylius_invoicing_plugin.resolver.company_data"
             - "@bitbag_sylius_invoicing_plugin.file_generator.invoice_filename"
             - "%invoices_root_dir%"
+            - "%invoices_locale_code%"
 
     bitbag_sylius_invoicing_plugin.validator.vat_number:
         class: BitBag\SyliusInvoicingPlugin\Validator\Constraints\VatNumberValidator

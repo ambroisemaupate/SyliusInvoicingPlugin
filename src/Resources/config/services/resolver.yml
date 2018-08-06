@@ -1,6 +1,8 @@
 services:
     bitbag_sylius_invoicing_plugin.resolver.invoice_number:
         class: BitBag\SyliusInvoicingPlugin\Resolver\IncrementalInvoiceNumberResolver
+        arguments:
+            - "@bitbag_sylius_invoicing_plugin.repository.invoice"
 
     bitbag_sylius_invoicing_plugin.resolver.invoice_file:
         class: BitBag\SyliusInvoicingPlugin\Resolver\InvoiceFileResolver
