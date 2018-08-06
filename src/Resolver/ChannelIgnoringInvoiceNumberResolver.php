@@ -44,7 +44,7 @@ final class ChannelIgnoringInvoiceNumberResolver implements InvoiceNumberResolve
 
         $tokens = [
             $invoice->getOrder()->getCheckoutCompletedAt()->format('Y'),
-            sprintf('"%09d"', $this->getInvoiceCountForCurrentYear()),
+            sprintf('%09d', $this->getInvoiceCountForCurrentYear()),
         ];
 
         return implode('-', $tokens);
