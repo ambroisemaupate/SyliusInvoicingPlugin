@@ -42,6 +42,10 @@ final class ChannelIgnoringInvoiceNumberResolver implements InvoiceNumberResolve
             throw new \RuntimeException('Cannot generate invoice number from inexistant order.');
         }
 
+        if (null === $invoice->getOrder()->getCheckoutCompletedAt()) {
+            throw new \RuntimeException('Cannot generate invoice if checkout was never completed.');
+        }
+
         $tokens = [
             $invoice->getOrder()->getCheckoutCompletedAt()->format('Y'),
             sprintf('%09d', $this->getInvoiceCountForCurrentYear()),

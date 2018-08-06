@@ -27,7 +27,7 @@ class GenerateInvoiceCommand extends ContainerAwareCommand
     {
         $this->setName('bitbag:invoice:generate')
             ->setDescription('Force invoice generation for an order')
-            ->addArgument('order', InputArgument::REQUIRED, 'Order identifier');
+            ->addArgument('order', InputArgument::REQUIRED, 'Order id');
     }
 
     /**
@@ -41,7 +41,6 @@ class GenerateInvoiceCommand extends ContainerAwareCommand
         $invoiceRepository = $this->getContainer()->get('doctrine')->getManager()->getRepository(Invoice::class);
         /** @var OrderRepository $orderRepository */
         $orderRepository = $this->getContainer()->get('sylius.repository.order');
-
         /** @var Order|null $order */
         $order = $orderRepository->findOneById($input->getArgument('order'));
 
@@ -61,7 +60,6 @@ class GenerateInvoiceCommand extends ContainerAwareCommand
         }
 
         $invoiceGenerator->generateFile($invoice);
-
 
         /** @var InvoiceFileResolverInterfaceResolver $invoiceFileResolver */
         $invoiceFileResolver = $this->getContainer()->get('bitbag_sylius_invoicing_plugin.resolver.invoice_file');
