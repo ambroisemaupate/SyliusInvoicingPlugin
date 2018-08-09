@@ -1,0 +1,5 @@
+bitbag_sylius_invoicing_plugin_download_customer_invoice:
+    path: /account/orders/{orderNumber}/invoice
+    methods: [GET]
+    defaults:
+        _controller: bitbag_sylius_invoicing_plugin.controller.action.download_customer_invoice
