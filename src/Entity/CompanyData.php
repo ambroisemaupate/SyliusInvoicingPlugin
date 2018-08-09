@@ -34,6 +34,16 @@ class CompanyData implements CompanyDataInterface
     /**
      * @var string
      */
+    protected $registrationNumber;
+
+    /**
+     * @var string
+     */
+    protected $activityCode;
+
+    /**
+     * @var string
+     */
     protected $street;
 
     /**
@@ -98,6 +108,38 @@ class CompanyData implements CompanyDataInterface
     public function setVatNumber(?string $vatNumber): void
     {
         $this->vatNumber = $vatNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getRegistrationNumber(): ?string
+    {
+        return $this->registrationNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setRegistrationNumber(?string $registrationNumber): void
+    {
+        $this->registrationNumber = $registrationNumber;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getActivityCode(): ?string
+    {
+        return $this->activityCode;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setActivityCode(?string $activityCode): void
+    {
+        $this->activityCode = $activityCode;
     }
 
     /**

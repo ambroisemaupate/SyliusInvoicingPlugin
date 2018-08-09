@@ -32,6 +32,14 @@ BitBag\SyliusInvoicingPlugin\Entity\CompanyData:
             column: vat_number
             type: string
             nullable: true
+        registrationNumber:
+            column: registration_number
+            type: string
+            nullable: true
+        activityCode:
+            column: activity_code
+            type: string
+            nullable: true
         seller:
             column: seller
             type: string

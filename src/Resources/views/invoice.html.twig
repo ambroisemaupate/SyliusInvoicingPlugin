@@ -202,7 +202,15 @@
                         {{ companyData.street }}<br/>
                         {{ companyData.postcode }} {{ companyData.city }}<br/>
                         {{ companyData.countryCode|sylius_country_name|upper }}<br/>
-                        {{ 'bitbag_sylius_invoicing_plugin.ui.vat'|trans }}: {{ companyData.vatNumber }}<br/>
+                        {% if companyData.vatNumber %}
+                            {{ 'bitbag_sylius_invoicing_plugin.ui.vat'|trans }}: {{ companyData.vatNumber }}<br/>
+                        {% endif %}
+                        {% if companyData.registrationNumber %}
+                            {{ 'bitbag_sylius_invoicing_plugin.ui.registration_number'|trans }}: {{ companyData.registrationNumber }}<br/>
+                        {% endif %}
+                        {% if companyData.activityCode %}
+                            {{ 'bitbag_sylius_invoicing_plugin.ui.activity_code'|trans }}: {{ companyData.activityCode }}<br/>
+                        {% endif %}
                     </div>
                 </div>
             </div>

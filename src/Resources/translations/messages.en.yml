@@ -30,6 +30,8 @@ bitbag_sylius_invoicing_plugin:
         postcode: Postcode
         country: Country
         vat_number: Vat number
+        activity_code: Activity code
+        registration_number: Registration number
         channel: Channel
         invoice_number_template: Invoice number template
         validate_customer_vat_number: Validate customer VAT number

@@ -32,6 +32,26 @@ interface CompanyDataInterface extends ResourceInterface
     /**
      * @return string|null
      */
+    public function getRegistrationNumber(): ?string;
+
+    /**
+     * @param string|null $vatNumber
+     */
+    public function setRegistrationNumber(?string $vatNumber): void;
+
+    /**
+     * @return string|null
+     */
+    public function getActivityCode(): ?string;
+
+    /**
+     * @param string|null $vatNumber
+     */
+    public function setActivityCode(?string $vatNumber): void;
+
+    /**
+     * @return string|null
+     */
     public function getStreet(): ?string;
 
     /**

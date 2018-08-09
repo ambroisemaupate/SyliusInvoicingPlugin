@@ -45,6 +45,14 @@ final class CompanyDataType extends AbstractResourceType
             ->add('vatNumber', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.vat_number',
             ])
+            ->add('registrationNumber', TextType::class, [
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.registration_number',
+                'required' => false,
+            ])
+            ->add('activityCode', TextType::class, [
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.activity_code',
+                'required' => false,
+            ])
             ->add('seller', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.seller',
             ])

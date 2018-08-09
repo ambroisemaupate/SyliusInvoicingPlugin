@@ -30,6 +30,8 @@ bitbag_sylius_invoicing_plugin:
         postcode: Code postal
         country: Pays
         vat_number: Numéro de TVA
+        activity_code: Code NAF/APE
+        registration_number: Numéro de SIRET
         channel: Canal
         invoice_number_template: Modèle de numéro de facture
         validate_customer_vat_number: Valider le numéro de TVA du client
