@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace BitBag\SyliusInvoicingPlugin\Form\Type;
 
 use Sylius\Bundle\ChannelBundle\Form\Type\ChannelChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -37,6 +38,9 @@ final class CompanyDataType extends AbstractResourceType
             ])
             ->add('postcode', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.postcode',
+            ])
+            ->add('countryCode', CountryType::class, [
+                'label' => 'bitbag_sylius_invoicing_plugin.ui.country',
             ])
             ->add('vatNumber', TextType::class, [
                 'label' => 'bitbag_sylius_invoicing_plugin.ui.vat_number',

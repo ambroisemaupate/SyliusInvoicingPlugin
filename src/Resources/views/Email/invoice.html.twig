@@ -3,12 +3,12 @@
 {% endblock %}
 
 {% block body %}
-    {% autoescape %}
-        Download your invoice no.{{ invoice.number }} for #{{ order.number }} by clicking
-        <a href="{{ url('bitbag_sylius_invoicing_plugin_download_order_invoice', {'orderTokenValue': order.tokenValue}) }}">this link</a>.
+    {% set url = order.channel.hostname is not null ? 'http://' ~ order.channel.hostname ~ path('bitbag_sylius_invoicing_plugin_download_order_invoice', {'orderTokenValue': order.tokenValue}) : url('bitbag_sylius_invoicing_plugin_download_order_invoice', {'orderTokenValue': order.tokenValue}) %}
 
-        <br/><br/>
+    Download your invoice no.{{ invoice.number }} for #{{ order.number }} by clicking
+    <a href="{{ url }}">this link</a>.
 
-        Thank you for your purchase.
-    {% endautoescape %}
+    <br/><br/>
+
+    Thank you for your purchase.
 {% endblock %}
