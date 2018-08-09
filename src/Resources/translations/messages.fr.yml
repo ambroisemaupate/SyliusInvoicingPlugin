@@ -28,6 +28,7 @@ bitbag_sylius_invoicing_plugin:
         street: Rue
         city: Ville
         postcode: Code postal
+        country: Pays
         vat_number: Numéro de TVA
         channel: Canal
         invoice_number_template: Modèle de numéro de facture
