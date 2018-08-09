@@ -25,6 +25,8 @@ interface InvoiceRepositoryInterface extends RepositoryInterface
      */
     public function findByOrderId(?int $orderId): ?InvoiceInterface;
 
+    public function findOneByTokenValue(string $tokenValue): ?InvoiceInterface;
+
     /**
      * @param \DateTime $dateTime
      *

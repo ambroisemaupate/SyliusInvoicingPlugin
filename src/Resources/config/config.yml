@@ -7,7 +7,7 @@ imports:
 parameters:
     wkhtmltopdf_binary_path: /usr/local/bin/wkhtmltopdf
     invoices_locale_code: "en"
-    invoices_root_dir: "%kernel.root_dir%/../invoices"
+    invoices_root_dir: "%kernel.project_dir%/var/invoices"
     invoices_number_resolver_class: BitBag\SyliusInvoicingPlugin\Resolver\IncrementalInvoiceNumberResolver
 
 twig:

@@ -42,16 +42,16 @@ final class DownloadOrderInvoice
     }
 
     /**
-     * @param int $orderId
+     * @param string $orderTokenValue
      *
      * @return BinaryFileResponse
      */
-    public function __invoke(int $orderId): BinaryFileResponse
+    public function __invoke(string $orderTokenValue): BinaryFileResponse
     {
-        $invoice = $this->invoiceRepository->findByOrderId($orderId);
+        $invoice = $this->invoiceRepository->findOneByTokenValue($orderTokenValue);
         $response = new BinaryFileResponse($this->invoiceFileResolver->resolveInvoicePath($invoice));
-
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+        $response->headers->set('Content-Type', 'application/pdf');
 
         return $response;
     }

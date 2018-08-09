@@ -70,11 +70,6 @@ Import routing in your `app/config/routing.yml` file:
 
 bitbag_sylius_invoicing_plugin:
     resource: "@BitBagSyliusInvoicingPlugin/Resources/config/routing.yml"
-    prefix: /admin
-    
-bitbag_sylius_invoicing_plugin_front:
-    resource: "@BitBagSyliusInvoicingPlugin/Resources/config/routing_front.yml"
-    prefix: /
 ```
 
 Finish the installation by updating/migrating the database schema:

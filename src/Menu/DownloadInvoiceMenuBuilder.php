@@ -89,8 +89,8 @@ final class DownloadInvoiceMenuBuilder
     {
         $menu
             ->addChild('download_invoice', [
-                'route' => 'bitbag_sylius_invoicing_plugin_admin_download_order_invoice',
-                'routeParameters' => ['orderId' => $order->getId()],
+                'route' => 'bitbag_sylius_invoicing_plugin_download_order_invoice',
+                'routeParameters' => ['orderTokenValue' => $order->getTokenValue()],
             ])
             ->setAttribute('type', 'link')
             ->setLabel('bitbag_sylius_invoicing_plugin.ui.download_invoice')

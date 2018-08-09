@@ -75,8 +75,8 @@ final class DownloadCustomerInvoice
 
         $invoice = $this->invoiceRepository->findByOrderId($order->getId());
         $response = new BinaryFileResponse($this->invoiceFileResolver->resolveInvoicePath($invoice));
-
         $response->setContentDisposition(ResponseHeaderBag::DISPOSITION_ATTACHMENT);
+        $response->headers->set('Content-Type', 'application/pdf');
 
         return $response;
     }
